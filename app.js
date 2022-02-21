@@ -1,10 +1,14 @@
-const express = require('express');
-const app = express();
-app.use(express.static('public'));
+const express = require("express")
+const path = require("path")
 
-app.listen(4300, () => {
+const app = express()
+
+const publicPath = path.join(__dirname, "./public")
+app.use(express.static(publicPath))
+
+app.listen(process.env.PORT || 4300, ()=>{
     console.log('mercadoliebre esta corriendo')
-})
+});
 
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/views/index.html');
